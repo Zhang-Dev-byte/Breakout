@@ -6,7 +6,7 @@ workspace "Breakout"
         language "C++"
         location "Breakout"
         cppdialect "C++17"
-        files { "Breakout/src/**.h", "Breakout/src/**.cpp" }
+        files { "Breakout/src/**.h", "Breakout/src/**.cpp", "Breakout/src/**.inl" }
         includedirs { "deps/glm" }
 
         targetdir ("bin/")

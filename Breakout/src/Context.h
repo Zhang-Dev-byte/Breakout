@@ -4,6 +4,7 @@
 #include <d3d11.h>
 #pragma comment(lib, "d3d11.lib")
 namespace wrl = Microsoft::WRL;
+#include "GraphicsThrowMacros.h"
 class Context {
 public:
 	bool Init(HWND hWnd);

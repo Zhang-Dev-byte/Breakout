@@ -2,6 +2,8 @@
 
 bool Context::Init(HWND hWnd)
 {
+    HRESULT hr;
+    WCHAR desc[512];
     DXGI_SWAP_CHAIN_DESC sd;
     ZeroMemory(&sd, sizeof(sd));
     sd.BufferCount = 2;
@@ -39,8 +41,8 @@ bool Context::Init(HWND hWnd)
         return false;
 
     wrl::ComPtr<ID3D11Texture2D> pBackBuffer;
-    pSwap->GetBuffer(0, IID_PPV_ARGS(&pBackBuffer));
-    pDevice->CreateRenderTargetView(pBackBuffer.Get(), NULL, &pTarget);
+    GFX_THROW_INFO(pSwap->GetBuffer(0, IID_PPV_ARGS(&pBackBuffer)));
+    GFX_THROW_INFO(pDevice->CreateRenderTargetView(pBackBuffer.Get(), NULL, &pTarget));
     return true;
 }
 

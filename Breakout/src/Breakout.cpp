@@ -6,6 +6,8 @@
 #include "Context.h"
 
 
+HRESULT hr;
+WCHAR desc[512];
 
 #define LOG(x) std::cout << x << std::endl;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -51,6 +53,6 @@ int main() {
 		}
 		float color[] = { 0.0f,0.5f,0.5f,1.0f };
 		GetContext(c)->ClearRenderTargetView(GetTarget(c).Get(), color);
-		GetSwapChain(c)->Present(0, 0);
+		GFX_THROW_INFO(GetSwapChain(c)->Present(0, 0));
 	}
 }
