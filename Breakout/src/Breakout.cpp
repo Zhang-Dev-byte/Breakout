@@ -3,6 +3,9 @@
 #include <iostream>
 #include "Keyboard.h"
 #include "Message.h"
+#include "Context.h"
+
+
 
 #define LOG(x) std::cout << x << std::endl;
 LRESULT CALLBACK WndProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -35,6 +38,10 @@ int main() {
 	ShowWindow(hWnd, SW_SHOWDEFAULT);
 	UpdateWindow(hWnd);
 
+	Context c;
+	if (!c.Init(hWnd)) {
+		LOG("ERROR: Failed to init directx");
+	}
 	Message msg;
 	while (!msg.ShouldClose()) {
 		if (msg.Peek())
@@ -42,6 +49,8 @@ int main() {
 			msg.Dispatch();
 			continue;
 		}
-
+		float color[] = { 0.0f,0.5f,0.5f,1.0f };
+		GetContext(c)->ClearRenderTargetView(GetTarget(c).Get(), color);
+		GetSwapChain(c)->Present(0, 0);
 	}
 }
