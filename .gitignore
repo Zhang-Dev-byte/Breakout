@@ -350,7 +350,7 @@ MigrationBackup/
 .ionide/
 
 # C++
-**./bin
-**./bin-int
+**/bin
+**/bin-int
 *.vcxproj
 *.sln
