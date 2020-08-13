@@ -43,6 +43,16 @@ bool Context::Init(HWND hWnd)
     wrl::ComPtr<ID3D11Texture2D> pBackBuffer;
     GFX_THROW_INFO(pSwap->GetBuffer(0, IID_PPV_ARGS(&pBackBuffer)));
     GFX_THROW_INFO(pDevice->CreateRenderTargetView(pBackBuffer.Get(), NULL, &pTarget));
+    pContext->OMSetRenderTargets(1, pTarget.GetAddressOf(), NULL);
+
+    D3D11_VIEWPORT vp;
+    vp.Width = 1280;
+    vp.Height = 720;
+    vp.MinDepth = 0;
+    vp.MaxDepth = 1;
+    vp.TopLeftX = 0;
+    vp.TopLeftY = 0;
+    pContext->RSSetViewports(1u, &vp);
     return true;
 }
 
